@@ -26,7 +26,9 @@ const buildForm = () => {
                           type="student"
                           class="form-control"
                           id="input-student"/>
+                          <div class="d-flex flex-wrap justify-content-around" id="sort-form">
                           <button type="button" class="btn btn-info" id="btn-srt">Sort!</button>
+                          </div>
                       </div>
                       </div>
                    </form>`;
@@ -43,7 +45,16 @@ const buildForm = () => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
   };
+
+  const showStudents = () => {
+    const target = e.target.id;
+  if (target === 'btn-sort') {
+    console.log('testing');
+    
+  }
+  }
   const buttonEvents = () => {
+    document.querySelector('#sort-form').addEventListener('click', showStudents);
     document.querySelector('#btnShowForm').addEventListener('click', showForm);
   };
   const init = () => {
