@@ -1,11 +1,12 @@
-'use strict';
+"use strict";
 const houses = ["Gryffindor", "Ravenclaw", "Slytherin", "Hufflepuff"];
 
 const buttonEvents = () => {
-  document.querySelector('#btnShowForm').addEventListener('click', showForm);
+  document.querySelector("#btnShowForm").addEventListener("click", showForm);
 
-  document.querySelector("#student-cards").addEventListener("click", deleteStudent);
-
+  document
+    .querySelector("#student-cards")
+    .addEventListener("click", deleteStudent);
 };
 
 const formEvents = () => {
@@ -29,11 +30,11 @@ const buildForm = () => {
                     </div>
                     </div>
                  </form>`;
-  printToDom('sort-form', domString);
+  printToDom("sort-form", domString);
 };
-const showForm = e => {
+const showForm = (e) => {
   const target = e.target.id;
-  if (target === 'btnGetSorting') {
+  if (target === "btnGetSorting") {
     buildForm();
     formEvents();
   }
@@ -46,20 +47,31 @@ const printToDom = (divId, textToPrint) => {
 let studentNames = [];
 
 const houseSorter = () => {
-  return Math.floor(Math.random() * houses);
-}
+  return Math.floor(Math.random() * 4);
+};
 
+// const getStudentName = () => {
+//   const name = document.getElementById("input-student").value;
+//   studentNames.push({ name: name, house: houses[houseSorter()]});
+//   document.querySelector("#studentForm").reset();
+
+//   if (document.getElementById("input-student").value.length == 0) {
+//     alert("empty");
+//   }
+// };
 const getStudentName = () => {
   const name = document.getElementById("input-student").value;
-  studentNames.push({name: name, house: houses[houseSorter()]});
-  document.querySelector("#studentForm").reset();
-  console.log(name)
-}
+  studentNames.push({ name: name, house: houses[houseSorter()]});
+  // document.querySelector("#studentForm").reset();
+  if (document.getElementById("input-student").value.length === 0) {
+    alert("empty");
+  }
+};
 
 const buildCard = () => {
   let domstring = "";
 
-  for (let i = 0; i < studentNames.length; i++){
+  for (let i = 0; i < studentNames.length; i++) {
     domstring += `<div class="card" id="${i}" style="width: 18rem;">`;
     domstring += `<div class="card-body">`;
     domstring += `<h5 class="card-title">${studentNames[i].name}</h5>`;
@@ -68,9 +80,9 @@ const buildCard = () => {
     domstring += `</div></div>`;
   }
   printToDom("student-cards", domstring);
-}
+};
 
-const deleteStudent = e => {
+const deleteStudent = (e) => {
   const buttonType = e.target.type;
   const expel = e.target.id;
 
@@ -78,9 +90,7 @@ const deleteStudent = e => {
     studentNames.splice(expel, 1);
     buildCard();
   }
-}
-
-
+};
 
 const init = () => {
   buttonEvents();
